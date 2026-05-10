@@ -10,9 +10,12 @@ Request:
 
 ```json
 {
-  "url": "https://www.youtube.com/watch?v=example"
+  "url": "https://www.youtube.com/watch?v=example",
+  "type": "video"
 }
 ```
+
+`type` can be `video` or `audio`. If omitted, the backend downloads video.
 
 Success response:
 
@@ -26,6 +29,18 @@ Success response:
 
 The backend saves completed files into `downloads/` and enables CORS for
 `http://localhost:5173`.
+
+Video downloads use:
+
+```bash
+yt-dlp -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4 URL
+```
+
+Audio downloads use:
+
+```bash
+yt-dlp -f ba -x --audio-format m4a --embed-thumbnail --add-metadata URL
+```
 
 ## Requirements
 
